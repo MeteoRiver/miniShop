@@ -27,8 +27,14 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
     private String role;  // "USER", "ADMIN","SELLER"
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt = LocalDateTime.now();
 }
