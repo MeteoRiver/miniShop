@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,10 +31,21 @@ public class Product {
     @Column(nullable = false)
     private int stock;
 
+    @Column
+    private String imageUrls; // 예: "https://.../img1.jpg,https://.../img2.jpg"
+
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews;
+
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private User seller;
 }

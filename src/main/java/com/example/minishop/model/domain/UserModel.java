@@ -33,7 +33,7 @@ public class UserModel {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public  static UserModel fromEntity(User user) {
+    public static UserModel fromEntity(User user) {
         return UserModel.builder()
                 .id(user.getId())
                 .email(user.getEmail())
